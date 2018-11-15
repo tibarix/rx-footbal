@@ -10,7 +10,7 @@ function* fetchCompetitionsSaga() {
     try {
         const data = yield call(fetchCompetitions);
 
-        yield put(receiveCompetitions(data.competitions));
+        yield put(receiveCompetitions(data.competitions.splice(0,50)));
         
     } catch (e) {
         yield put(loadCompetitionsFailed(e));
