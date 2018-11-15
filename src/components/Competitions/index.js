@@ -1,27 +1,33 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import Competition from '../Competitions/Competition';
-import axios from 'axios';
+import { loadCompetitions } from '../../core/actions/competition-actions';
+
 export class Competitions extends React.Component {
     state = {
-        competitions : []
-    }
-    fetchCompetitions() {
-        axios.get('https://api.football-data.org/v2/competitions',
-            {
-                headers: { 'X-Auth-Token': '4d61ef99b9a44603b67a0ec1e9f934ef' }
-            })
-            .then(({data}) => state.competitions = data.competitions)
-            .catch(err => console.error(err));
+        competitions: [1, 2, 3, 4]
     }
     constructor(props) {
         super(props);
-        this.fetchCompetitions();
     }
-
+    componentDidMount() {
+        this.props.loadCompetitions();
+    }
     render() {
         return this.state.competitions.map((competition, key) => {
             return <Competition key={key} />
         });
     }
 }
+const mapStateToProps = ({ data }) => ({
+    competitions: data.competitions,
+    error: data.error,
+    loadingCompetitions: data.loadingCompetitions
+})
 
+const mapDispatchToProps = dispatch => ({
+    loadCompetitions: () => {
+        dispatch(loadCompetitions());
+    }
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Competitions);

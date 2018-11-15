@@ -3,26 +3,26 @@ import constants from '../../core/types'
 export const loadCompetitions = () => {
     return {
         type: constants.LOAD_COMPETITIONS,
-        payload:{
-            isLoading: true,
+        payload: {
+            isLoadingCompetitions: true,
             competitions: []
         }
     }
 }
 
 export const receiveCompetitions = competitions => ({
-    type : constants.LOAD_COMPETITIONS_SUCCESS,
-    payload : {
+    type: constants.LOAD_COMPETITIONS_SUCCESS,
+    payload: {
         competitions,
-        isLoading:false
+        isLoadingCompetitions: false
     }
 })
 
 export const loadCompetitionsFailed = error => ({
-    type : constants.LOAD_COMPETITIONS_FAIL,
-    payload : {
+    type: constants.LOAD_COMPETITIONS_FAIL,
+    payload: {
         error,
         competitions: [],
-        isLoading:false
+        isLoadingCompetitions: false
     }
 })

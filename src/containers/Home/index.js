@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 
 /* component styles */
 import { styles } from './styles.scss'
-import { Competitions } from '../../components/Competitions';
+import  Competitions  from '../../components/Competitions';
 
 class Home extends Component {
   render() {
