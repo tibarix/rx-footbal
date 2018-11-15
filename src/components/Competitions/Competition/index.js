@@ -32,7 +32,7 @@ function ComplexGrid(props) {
                 <Grid container spacing={16}>
                     <Grid item>
                         <ButtonBase className={classes.image}>
-                            <img className={classes.img} alt="complex" src="https://upload.wikimedia.org/wikipedia/en/b/bf/UEFA_Champions_League_logo_2.svg" />
+                            <img className={classes.img} alt="complex" src={props.emblemUrl} />
                         </ButtonBase>
                     </Grid>
                     <Grid item xs={12} sm container>
