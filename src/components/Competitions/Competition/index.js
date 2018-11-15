@@ -10,6 +10,7 @@ const styles = theme => ({
     root: {
         flexGrow: 1,
         maxWidth: 600,
+        minWidth:400,
         padding: theme.spacing.unit * 2,
     },
     image: {
@@ -32,24 +33,21 @@ function ComplexGrid(props) {
                 <Grid container spacing={16}>
                     <Grid item>
                         <ButtonBase className={classes.image}>
-                            <img className={classes.img} alt="complex" src={props.emblemUrl} />
+                            <img className={classes.img} alt="complex" src={props.emblemUrl || "https://ui-avatars.com/api/?name="+props.name} />
                         </ButtonBase>
                     </Grid>
                     <Grid item xs={12} sm container>
                         <Grid item xs container direction="column" spacing={16}>
                             <Grid item xs>
                                 <Typography gutterBottom variant="subtitle1">
-                                    Standard license
+                                    {props.name}
               </Typography>
-                                <Typography gutterBottom>Full resolution 1920x1080 • JPEG</Typography>
-                                <Typography color="textSecondary">ID: 1030114</Typography>
-                            </Grid>
-                            <Grid item>
-                                <Typography style={{ cursor: 'pointer' }}>Remove</Typography>
+                                <Typography gutterBottom>{props.area.name}</Typography>
+                                <Typography color="textSecondary">{props.area.id}</Typography>
                             </Grid>
                         </Grid>
                         <Grid item>
-                            <Typography variant="subtitle1">$19.00</Typography>
+                            <Typography variant="subtitle1">Code: {props.code? props.code : '-'}</Typography>
                         </Grid>
                     </Grid>
                 </Grid>
