@@ -26,3 +26,10 @@ export const loadCompetitionsFailed = error => ({
         isLoadingCompetitions: false
     }
 })
+
+export const filterCompetitions = name => ({
+    type: constants.FILTER_COMPETITIONS,
+    payload: {
+        name
+    }
+})

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -16,7 +17,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-
+import { filterCompetitions } from '../../core/actions/competition-actions';
 const styles = theme => ({
   root: {
     width: '100%',
@@ -177,6 +178,7 @@ class PrimarySearchAppBar extends React.Component {
                 <SearchIcon />
               </div>
               <InputBase
+              onChange = {event => this.props.filterCompetitions(event.target.value)}
                 placeholder="Search…"
                 classes={{
                   root: classes.inputRoot,
@@ -222,5 +224,9 @@ class PrimarySearchAppBar extends React.Component {
 PrimarySearchAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-
-export default withStyles(styles)(PrimarySearchAppBar);
+const mapDispatchToProps = dispatch =>({
+  filterCompetitions : name =>{
+    dispatch(filterCompetitions(name))
+  }
+})
+export default connect(null, mapDispatchToProps)(withStyles(styles)(PrimarySearchAppBar));
