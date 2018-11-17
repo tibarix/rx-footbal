@@ -36,10 +36,10 @@ export class Competitions extends React.Component {
 }
 const mapStateToProps = ({ data }) => {
     return {
-        competitions: data.competitions,
-        keyword: data.keyword,
-        error: data.error,
-        loadingCompetitions: data.loadingCompetitions
+        competitions: data.CompetitionsReducer.competitions,
+        keyword: data.CompetitionsReducer.keyword,
+        error: data.CompetitionsReducer.error,
+        loadingCompetitions: data.CompetitionsReducer.loadingCompetitions
     };
 }
 const mapDispatchToProps = dispatch => ({
