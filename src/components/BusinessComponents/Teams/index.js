@@ -16,26 +16,27 @@ export class Teams extends React.Component {
         this.props.loadTeams(this.props.match.params.code)
     }
     componentWillReceiveProps(newProps) {
+
         this.state.teams = newProps.teamsInfo.teams
+        if (newProps.keyword) {
+            let filteredTeams = newProps.teamsInfo.teams.filter(team => team.name.toLowerCase().includes(newProps.keyword.toLowerCase()));
+            this.setState({
+                teams: filteredTeams
+            });
+        }
     }
 
     renderTeams() {
         return (
-            <div className="container" >
-                <Grid container justify="center" spacing={40}>
-                    {
-                        this.state.teams.map((team, index) => {
-                            return <Team {...team} key={index} />
-                        })
-                    }
-                </Grid>
-            </div>
+            this.state.teams.map((team, index) => {
+                return <Team {...team} key={index} />
+            })
         );
     }
     render() {
-        if(this.props.loadingTeams){
+        if (this.props.loadingTeams) {
             return <Spinner />
-        }else{
+        } else {
             return this.renderTeams();
         }
     }
@@ -47,8 +48,12 @@ const mdp = dispatch => ({
     }
 })
 
-const msp = state => ({
-    teamsInfo: state.data.TeamsReducer.teamsInfo,
-    loadingTeams: state.data.TeamsReducer.loadingTeams
-})
+const msp = state => {
+    return {
+        teamsInfo: state.data.TeamsReducer.teamsInfo,
+        loadingTeams: state.data.TeamsReducer.loadingTeams,
+        error: state.data.TeamsReducer.error,
+        keyword: state.ui.keyword
+    };
+}
 export default connect(msp, mdp)(Teams);

@@ -17,7 +17,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { filterCompetitions } from '../../../core/actions/competition-actions';
+import { filterItems } from '../../../core/actions/actions-ui';
 const styles = theme => ({
   root: {
     width: '100%',
@@ -178,7 +178,7 @@ class PrimarySearchAppBar extends React.Component {
                 <SearchIcon />
               </div>
               <InputBase
-              onChange = {event => this.props.filterCompetitions(event.target.value)}
+              onChange = {event => this.props.pushKeyword(event.target.value)}
                 placeholder="Search…"
                 classes={{
                   root: classes.inputRoot,
@@ -225,8 +225,8 @@ PrimarySearchAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 const mapDispatchToProps = dispatch =>({
-  filterCompetitions : name =>{
-    dispatch(filterCompetitions(name))
+  pushKeyword : name =>{
+    dispatch(filterItems(name))
   }
 })
 export default connect(null, mapDispatchToProps)(withStyles(styles)(PrimarySearchAppBar));

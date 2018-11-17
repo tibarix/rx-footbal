@@ -9,7 +9,8 @@ const initialState = {
     openModal: false,
     modalKey: ''
   },
-  rightDrawerIsOpen: false
+  rightDrawerIsOpen: false,
+  keyword:''
 }
 
 function uiReducer(state = initialState, action) {
@@ -53,6 +54,11 @@ function uiReducer(state = initialState, action) {
       return Object.assign({}, state, {
         rightDrawerIsOpen: false
       })
+    case constants.FILTER_ITEMS:
+      return {
+        ...state,
+        keyword: action.payload.keyword
+      }
 
     default:
       return state

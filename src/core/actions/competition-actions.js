@@ -27,9 +27,3 @@ export const loadCompetitionsFailed = error => ({
     }
 })
 
-export const filterCompetitions = keyword => ({
-    type: constants.FILTER_COMPETITIONS,
-    payload: {
-        keyword
-    }
-})

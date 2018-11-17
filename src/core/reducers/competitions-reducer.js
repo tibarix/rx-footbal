@@ -18,7 +18,8 @@ function CompetitionsReducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 loadingCompetitions: false,
-                competitions: payload.competitions
+                competitions: payload.competitions,
+                keyword:''
             }
         case constants.LOAD_COMPETITIONS_FAIL:
             return {

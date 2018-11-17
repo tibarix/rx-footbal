@@ -8,7 +8,7 @@ export default keyMirror({
   LOAD_COMPETITIONS:null,
   LOAD_COMPETITIONS_SUCCESS:null,
   LOAD_COMPETITIONS_FAIL:null,
-  FILTER_COMPETITIONS:null,
+  FILTER_ITEMS:null,
 
   LOAD_TEAMS:null,
   LOAD_TEAMS_SUCCESS:null,

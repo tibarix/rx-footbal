@@ -15,7 +15,6 @@ function TeamsReducer(state = initialState, { type, payload }) {
             }
 
         case constants.LOAD_TEAMS_SUCCESS:{
-            console.log(payload)
             return {
                 ...state,
                 loadingTeams: false,

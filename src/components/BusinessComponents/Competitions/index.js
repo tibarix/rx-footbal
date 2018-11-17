@@ -13,7 +13,7 @@ export class Competitions extends React.Component {
     }
     componentWillReceiveProps({ competitions, keyword }) {
         this.state.competitions = competitions;
-        let filteredCompetitions = competitions.filter(comp => comp.name.includes(keyword));
+        let filteredCompetitions = competitions.filter(comp => comp.name.toLowerCase().includes(keyword.toLowerCase()));
         this.setState({
             competitions: filteredCompetitions
         });
@@ -34,10 +34,11 @@ export class Competitions extends React.Component {
         }
     }
 }
-const mapStateToProps = ({ data }) => {
+const mapStateToProps = ({ data,ui }) => {
+    console.warn(data,ui)
     return {
         competitions: data.CompetitionsReducer.competitions,
-        keyword: data.CompetitionsReducer.keyword,
+        keyword: ui.keyword,
         error: data.CompetitionsReducer.error,
         loadingCompetitions: data.CompetitionsReducer.loadingCompetitions
     };

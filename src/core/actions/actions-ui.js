@@ -37,3 +37,10 @@ export function closeRightDrawer() {
     type: constants.CLOSE_RIGHT_DRAWER
   }
 }
+
+export const filterItems = keyword => ({
+  type: constants.FILTER_ITEMS,
+  payload: {
+      keyword
+  }
+})
