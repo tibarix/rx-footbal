@@ -2,6 +2,7 @@ import constants from '../../core/types'
 
 const initialState = {
     competitions: [],
+    keyword : '',
     loadingCompetitions: false
 }
 
@@ -27,10 +28,9 @@ function CompetitionsReducer(state = initialState, { type, payload }) {
                 error: payload.error
             }
         case constants.FILTER_COMPETITIONS:{
-            const filteredCompetitions = state.competitions.filter (comp => comp.name.startsWith(payload.name));
             return {
                 ...state,
-                competitions:filteredCompetitions
+                keyword:payload.keyword
             }
         }
             
