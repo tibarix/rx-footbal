@@ -1,9 +1,11 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import { Button } from '@material-ui/core';
 
 const styles = theme => ({
     root: {
@@ -36,11 +38,11 @@ class Competition extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-            <Grid item style={{ cursor: 'pointer' }} onClick={this.goToTeams}>
+            <Grid item style={{ cursor: 'pointer' }} >
                 <Paper className={classes.root}>
                     <Grid container spacing={16}>
                         <Grid item>
-                            <ButtonBase className={classes.image}>
+                            <ButtonBase className={classes.image} onClick={this.goToTeams}>
                                 <img className={classes.img} alt="complex" src={this.props.emblemUrl || "https://ui-avatars.com/api/?name=" + this.props.name} />
                             </ButtonBase>
                         </Grid>
@@ -52,6 +54,20 @@ class Competition extends React.Component {
                                     </Typography>
                                     <Typography gutterBottom>{this.props.area.name}</Typography>
                                     <Typography color="textSecondary">{this.props.area.id}</Typography>
+                                </Grid>
+                                <Grid container>
+                                    <Grid item>
+                                        <Typography style={{ cursor: 'pointer' }}>
+                                            <Link to={`/competition/${this.props.code}/standings`}> <Button color='primary'>Standings</Button></Link>
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item>
+                                        <Typography style={{ cursor: 'pointer' }}>
+                                            <Link to={`/competition/${this.props.code}/matches`}>
+                                                <Button color='primary'>Matches</Button>
+                                            </Link>
+                                        </Typography>
+                                    </Grid>
                                 </Grid>
                             </Grid>
                             <Grid item>

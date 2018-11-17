@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
 import Competition from '../Competitions/Competition';
+import { selectCompetitions } from '../../../core/reducers';
 import { loadCompetitions } from '../../../core/actions/competition-actions';
 import Spinner from '../../BaseComponents/Spinner';
 import Notifier, { openSnackbar } from '../../BaseComponents/Notifier';
@@ -59,12 +60,12 @@ export class Competitions extends React.Component {
         }
     }
 }
-const mapStateToProps = ({ data, ui }) => {
+const mapStateToProps = (state) => {
     return {
-        competitions: data.CompetitionsReducer.competitions,
-        keyword: ui.keyword,
-        error: data.CompetitionsReducer.error,
-        loadingCompetitions: data.CompetitionsReducer.loadingCompetitions
+        competitions: selectCompetitions(state),
+        keyword: state.ui.keyword,
+        error: state.data.CompetitionsReducer.error,
+        loadingCompetitions: state.data.CompetitionsReducer.loadingCompetitions
     };
 }
 const mapDispatchToProps = dispatch => ({

@@ -11,4 +11,6 @@ const rootReducer = combineReducers({
   })
 })
 
+export const selectCompetitions = state => state.data.CompetitionsReducer.competitions
+export const selectCompetition = (state,code) => state.data.CompetitionsReducer.competitions.find(competition => competition.code == code)
 export default rootReducer
