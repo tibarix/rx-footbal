@@ -10,10 +10,10 @@ const colors = getStyles([
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: colors.hotPink
+      main: colors.aquaBlue
     },
     secondary: {
-      main: colors.aquaBlue
+      main: colors.red
     },
     error: {
       main: colors.red
