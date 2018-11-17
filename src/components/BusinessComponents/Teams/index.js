@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux'
-import Grid from '@material-ui/core/Grid';
+import { Link } from 'react-router-dom'
 import { loadTeams } from '../../../core/actions/teams-actions';
 import { filterItems } from '../../../core/actions/actions-ui'
 import Team from './Team';
@@ -31,14 +31,12 @@ export class Teams extends React.Component {
                 });
             }
         }
-
-
     }
 
     renderTeams() {
         return (
             <Fragment>
-               <h1>Teams:</h1>
+                <h1>Teams:</h1>
                 {
                     this.state.teams.map((team, index) => {
                         return <Team {...team} key={index} />
@@ -51,7 +49,10 @@ export class Teams extends React.Component {
         if (this.props.loadingTeams) {
             return <Spinner />
         } else {
-            return this.renderTeams();
+            if (this.props.error) {
+                return <h1>{this.props.error} <Link to='/'> Go back </Link> </h1>
+            } else
+                return this.renderTeams();
         }
     }
 }

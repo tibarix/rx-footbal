@@ -14,6 +14,15 @@ export class Competitions extends React.Component {
         super(props);
     }
 
+    componentDidMount() {
+        if(!this.props.competitions.length){
+            this.props.loadCompetitions();
+        }else{
+            this.setState({
+                competitions : this.props.competitions
+            })
+        }
+    }
     redirectToTeams = code => {
         if (code) {
             let path = `competitions/${code}/teams`;
@@ -31,9 +40,7 @@ export class Competitions extends React.Component {
             competitions: filteredCompetitions
         });
     }
-    componentDidMount() {
-        this.props.loadCompetitions();
-    }
+    
     renderCompetitions() {
         return (<Fragment>
             <Notifier />
@@ -53,7 +60,6 @@ export class Competitions extends React.Component {
     }
 }
 const mapStateToProps = ({ data, ui }) => {
-    console.warn(data, ui)
     return {
         competitions: data.CompetitionsReducer.competitions,
         keyword: ui.keyword,

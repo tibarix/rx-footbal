@@ -26,7 +26,12 @@ function* fetchTeamsSaga({ payload }) {
     try {
 
         const data = yield call(fetchTeamsByCompetitionCode, payload.competitionCode);
-        yield put(loadTeamSuccess(data));
+        
+        if(data.count){
+            yield put(loadTeamSuccess(data));
+        }else{
+            throw 'This competition is not yet available';
+        }
 
     } catch (e) {
         yield put(loadTeamsFailed(e));
