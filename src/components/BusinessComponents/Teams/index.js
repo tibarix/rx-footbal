@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux'
 import Grid from '@material-ui/core/Grid';
 import { loadTeams } from '../../../core/actions/teams-actions';
+import { filterItems } from '../../../core/actions/actions-ui'
 import Team from './Team';
 import Spinner from '../../BaseComponents/Spinner';
 
@@ -14,23 +15,36 @@ export class Teams extends React.Component {
     }
     componentDidMount() {
         this.props.loadTeams(this.props.match.params.code)
+        this.props.clearInput();
     }
     componentWillReceiveProps(newProps) {
-
         this.state.teams = newProps.teamsInfo.teams
-        if (newProps.keyword) {
-            let filteredTeams = newProps.teamsInfo.teams.filter(team => team.name.toLowerCase().includes(newProps.keyword.toLowerCase()));
-            this.setState({
-                teams: filteredTeams
-            });
+        if (this.props.teamsInfo.teams) {
+            if (newProps.keyword && this.props.teamsInfo.teams && Object.keys(newProps.teamsInfo).length && newProps.teamsInfo.teams) {
+                let filteredTeams = newProps.teamsInfo.teams.filter(team => team.name.toLowerCase().includes(newProps.keyword.toLowerCase()));
+                this.setState({
+                    teams: filteredTeams
+                });
+            } else {
+                this.setState({
+                    teams: this.props.teamsInfo.teams
+                });
+            }
         }
+
+
     }
 
     renderTeams() {
         return (
-            this.state.teams.map((team, index) => {
-                return <Team {...team} key={index} />
-            })
+            <Fragment>
+               <h1>Teams:</h1>
+                {
+                    this.state.teams.map((team, index) => {
+                        return <Team {...team} key={index} />
+                    })
+                }
+            </Fragment>
         );
     }
     render() {
@@ -45,6 +59,9 @@ export class Teams extends React.Component {
 const mdp = dispatch => ({
     loadTeams: code => {
         dispatch(loadTeams(code));
+    },
+    clearInput: () => {
+        dispatch(filterItems(''))
     }
 })
 

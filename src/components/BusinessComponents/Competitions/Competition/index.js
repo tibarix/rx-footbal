@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -30,15 +29,14 @@ class Competition extends React.Component {
     constructor(props) {
         super(props);
     }
-    routeChange = () => {
-        let path = `competitions/${this.props.code}/teams`;
-        this.props.history.push(path);
+    goToTeams = () => {
+        this.props.redirectToTeams(this.props.code)
     }
 
     render() {
         const { classes } = this.props;
         return (
-            <Grid item style={{ cursor: 'pointer' }} onClick={this.routeChange}>
+            <Grid item style={{ cursor: 'pointer' }} onClick={this.goToTeams}>
                 <Paper className={classes.root}>
                     <Grid container spacing={16}>
                         <Grid item>
@@ -67,4 +65,4 @@ class Competition extends React.Component {
     }
 }
 
-export default withStyles(styles)(withRouter(Competition));
+export default withStyles(styles)(Competition);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom';
 import Competition from '../Competitions/Competition';
 import { loadCompetitions } from '../../../core/actions/competition-actions';
 import Spinner from '../../BaseComponents/Spinner';
@@ -11,6 +12,16 @@ export class Competitions extends React.Component {
     constructor(props) {
         super(props);
     }
+
+    redirectToTeams = code => {
+        if (code) {
+            let path = `competitions/${code}/teams`;
+            this.props.history.push(path);
+        } else {
+            alert("code invalid");
+        }
+    }
+
     componentWillReceiveProps({ competitions, keyword }) {
         this.state.competitions = competitions;
         let filteredCompetitions = competitions.filter(comp => comp.name.toLowerCase().includes(keyword.toLowerCase()));
@@ -23,7 +34,7 @@ export class Competitions extends React.Component {
     }
     renderCompetitions() {
         return this.state.competitions.map((competition, key) => {
-            return <Competition key={key} {...competition} />
+            return <Competition key={key} {...competition} redirectToTeams={this.redirectToTeams} />
         });
     }
     render() {
@@ -34,8 +45,8 @@ export class Competitions extends React.Component {
         }
     }
 }
-const mapStateToProps = ({ data,ui }) => {
-    console.warn(data,ui)
+const mapStateToProps = ({ data, ui }) => {
+    console.warn(data, ui)
     return {
         competitions: data.CompetitionsReducer.competitions,
         keyword: ui.keyword,
@@ -48,4 +59,4 @@ const mapDispatchToProps = dispatch => ({
         dispatch(loadCompetitions());
     }
 })
-export default connect(mapStateToProps, mapDispatchToProps)(Competitions);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Competitions));
