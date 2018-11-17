@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { MuiThemeProvider } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid';
 import {
   HashRouter as Router,
   Switch,
@@ -20,12 +21,16 @@ class App extends Component {
       <MuiThemeProvider theme={theme}>
         <Fragment>
           <PrimarySearchAppBar>{appConfig.name}</PrimarySearchAppBar>
-          <Router>
-            <Switch>
-              <Route exact path='/' component={Home} />
-              <Route path='/competitions/:code/teams' component={Teams} />
-            </Switch>
-          </Router>
+          <div className="container" >
+            <Grid container justify="center" spacing={40}>
+              <Router>
+                <Switch>
+                  <Route exact path='/' component={Home} />
+                  <Route path='/competitions/:code/teams' component={Teams} />
+                </Switch>
+              </Router>
+            </Grid>
+          </div>
         </Fragment>
       </MuiThemeProvider>
     )

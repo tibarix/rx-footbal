@@ -32,9 +32,8 @@ class Team extends React.Component {
 
     render() {
         const { classes } = this.props;
-        console.log(classes)
         return (
-            <Grid item style={{ cursor: 'pointer' }} onClick={this.routeChange}>
+            <Grid item style={{ cursor: 'pointer' }}>
                 <Paper className={classes.root}>
                     <Grid container spacing={16}>
                         <Grid item>
