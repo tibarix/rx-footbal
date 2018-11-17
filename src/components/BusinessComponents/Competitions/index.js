@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import Competition from '../Competitions/Competition';
-import { loadCompetitions } from '../../core/actions/competition-actions';
-import Spinner from '../Spinner';
+import { loadCompetitions } from '../../../core/actions/competition-actions';
+import Spinner from '../../BaseComponents/Spinner';
 
 export class Competitions extends React.Component {
     state = {

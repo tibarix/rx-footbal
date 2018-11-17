@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 
 /* component styles */
 import { styles } from './styles.scss'
-import  Competitions  from '../../components/Competitions';
+import  Competitions  from '../../components/BusinessComponents/Competitions';
 
 class Home extends Component {
   render() {
@@ -18,18 +18,3 @@ class Home extends Component {
 }
 
 export default Home
-
-/*
-
-<Grid container spacing={8} >
-          <List dense>
-            {[0, 1, 2, 3].map(value => (
-              <ListItem key={value} button>
-                <Avatar alt="Remy Sharp" src="https://upload.wikimedia.org/wikipedia/en/b/bf/UEFA_Champions_League_logo_2.svg" />
-                <ListItemText primary={`Line item ${value + 1}`} />
-              </ListItem>
-            ))}
-          </List>
-        </Grid>
-
-*/

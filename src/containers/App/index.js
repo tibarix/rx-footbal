@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { MuiThemeProvider } from '@material-ui/core/styles'
 import theme from 'configs/config-theme'
-import PrimarySearchAppBar from 'components/AppBar'
+import PrimarySearchAppBar from '../../components/BusinessComponents/AppBar'
 import Home from 'containers/Home'
 import { appConfig } from 'configs/config-main'
 

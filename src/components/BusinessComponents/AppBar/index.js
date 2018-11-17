@@ -17,7 +17,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { filterCompetitions } from '../../core/actions/competition-actions';
+import { filterCompetitions } from '../../../core/actions/competition-actions';
 const styles = theme => ({
   root: {
     width: '100%',
