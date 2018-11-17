@@ -8,7 +8,7 @@ import {
 import theme from 'configs/config-theme'
 import PrimarySearchAppBar from '../../components/BusinessComponents/AppBar'
 import Home from 'containers/Home'
-import {Teams} from '../../components/BusinessComponents/Teams'
+import Teams from '../../components/BusinessComponents/Teams'
 import { appConfig } from 'configs/config-main'
 
 // global styles for entire app
@@ -23,7 +23,7 @@ class App extends Component {
           <Router>
             <Switch>
               <Route exact path='/' component={Home} />
-              <Route path='/teams' component={Teams} />
+              <Route path='/competitions/:code/teams' component={Teams} />
             </Switch>
           </Router>
         </Fragment>
