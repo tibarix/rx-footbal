@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
 import Competition from '../Competitions/Competition';
 import { loadCompetitions } from '../../../core/actions/competition-actions';
 import Spinner from '../../BaseComponents/Spinner';
+import Notifier, { openSnackbar } from '../../BaseComponents/Notifier';
 
 export class Competitions extends React.Component {
     state = {
@@ -18,7 +19,8 @@ export class Competitions extends React.Component {
             let path = `competitions/${code}/teams`;
             this.props.history.push(path);
         } else {
-            alert("code invalid");
+            openSnackbar({ message: 'code not valid' });
+
         }
     }
 
@@ -33,9 +35,14 @@ export class Competitions extends React.Component {
         this.props.loadCompetitions();
     }
     renderCompetitions() {
-        return this.state.competitions.map((competition, key) => {
-            return <Competition key={key} {...competition} redirectToTeams={this.redirectToTeams} />
-        });
+        return (<Fragment>
+            <Notifier />
+            {
+                this.state.competitions.map((competition, key) => {
+                    return <Competition key={key} {...competition} redirectToTeams={this.redirectToTeams} />
+                })
+            }
+        </Fragment>)
     }
     render() {
         if (!this.props.loadingCompetitions) {
