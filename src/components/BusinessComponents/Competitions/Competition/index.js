@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -10,7 +10,7 @@ const styles = theme => ({
     root: {
         flexGrow: 1,
         maxWidth: 600,
-        minWidth:400,
+        minWidth: 400,
         padding: theme.spacing.unit * 2,
     },
     image: {
@@ -25,38 +25,47 @@ const styles = theme => ({
     },
 });
 
-function ComplexGrid(props) {
-    const { classes } = props;
-    return (
-        <Grid item style={{cursor:'pointer'}} onClick={() => console.log('hello')}>
-            <Paper className={classes.root}>
-                <Grid container spacing={16}>
-                    <Grid item>
-                        <ButtonBase className={classes.image}>
-                            <img className={classes.img} alt="complex" src={props.emblemUrl || "https://ui-avatars.com/api/?name="+props.name} />
-                        </ButtonBase>
-                    </Grid>
-                    <Grid item xs={12} sm container>
-                        <Grid item xs container direction="column" spacing={16}>
-                            <Grid item xs>
-                                <Typography gutterBottom variant="subtitle1">
-                                    {props.name}
-              </Typography>
-                                <Typography gutterBottom>{props.area.name}</Typography>
-                                <Typography color="textSecondary">{props.area.id}</Typography>
+class Competition extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+    routeChange = () => {
+        let path = `teams`;
+        console.log(this.props.code)
+        this.props.history.push(path);
+    }
+
+    render() {
+        const { classes } = this.props;
+        return (
+            <Grid item style={{ cursor: 'pointer' }} onClick={this.routeChange}>
+                <Paper className={classes.root}>
+                    <Grid container spacing={16}>
+                        <Grid item>
+                            <ButtonBase className={classes.image}>
+                                <img className={classes.img} alt="complex" src={this.props.emblemUrl || "https://ui-avatars.com/api/?name=" + this.props.name} />
+                            </ButtonBase>
+                        </Grid>
+                        <Grid item xs={12} sm container>
+                            <Grid item xs container direction="column" spacing={16}>
+                                <Grid item xs>
+                                    <Typography gutterBottom variant="subtitle1">
+                                        {this.props.name}
+                                    </Typography>
+                                    <Typography gutterBottom>{this.props.area.name}</Typography>
+                                    <Typography color="textSecondary">{this.props.area.id}</Typography>
+                                </Grid>
+                            </Grid>
+                            <Grid item>
+                                <Typography variant="subtitle1">Code: {this.props.code ? this.props.code : '-'}</Typography>
                             </Grid>
                         </Grid>
-                        <Grid item>
-                            <Typography variant="subtitle1">Code: {props.code? props.code : '-'}</Typography>
-                        </Grid>
                     </Grid>
-                </Grid>
-            </Paper>
-        </Grid>
-    );
+                </Paper>
+            </Grid>
+        );
+    }
 }
 
-ComplexGrid.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
-export default withStyles(styles)(ComplexGrid);
+export default withStyles(styles)(withRouter(Competition));
