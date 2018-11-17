@@ -13,7 +13,8 @@ export const loadTeamSuccess = teamsInfo => ({
     type: constants.LOAD_TEAMS_SUCCESS,
     payload: {
         teamsInfo,
-        isLoadingCompetitions: false
+        isLoadingCompetitions: false,
+        error:null
     }
 })
 

@@ -18,7 +18,8 @@ function TeamsReducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 loadingTeams: false,
-                teamsInfo: payload.teamsInfo
+                teamsInfo: payload.teamsInfo,
+                error:null
             }
         }
 

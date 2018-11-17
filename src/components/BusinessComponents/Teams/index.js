@@ -36,7 +36,6 @@ export class Teams extends React.Component {
     renderTeams() {
         return (
             <Fragment>
-                <h1>Teams:</h1>
                 {
                     this.state.teams.map((team, index) => {
                         return <Team {...team} key={index} />

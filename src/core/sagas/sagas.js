@@ -13,8 +13,8 @@ import {
 function* fetchCompetitionsSaga() {
     try {
         const data = yield call(fetchCompetitions);
-
-        yield put(receiveCompetitions(data.competitions.splice(0, 50)));
+        const competitions = data.competitions.filter (c => c.code != null);
+        yield put(receiveCompetitions(competitions));
 
     } catch (e) {
         yield put(loadCompetitionsFailed(e));
@@ -26,7 +26,6 @@ function* fetchTeamsSaga({ payload }) {
     try {
 
         const data = yield call(fetchTeamsByCompetitionCode, payload.competitionCode);
-        
         if(data.count){
             yield put(loadTeamSuccess(data));
         }else{
